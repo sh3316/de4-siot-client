@@ -7,7 +7,7 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import "./App.css";
 
-const BASE_URL = "http://localhost:8888";
+const BASE_URL = "https://chrishuh7.herokuapp.com";
 const TZ = "Europe/London";
 
 function App() {
@@ -23,15 +23,7 @@ function App() {
 
   useEffect(() => {
     const fetch = async () => {
-      // bike 데이터 가져와! 10s
-      // 다 됐으면?
-      // weather 데이터 가져와! 20s
 
-      // 30s
-
-      // bike, weather 동시에 요청 -> bike 10s, weather 20s
-
-      // -> 20s
 
       const [bikeData, weatherData] = await Promise.all([
         axios.get(`${BASE_URL}/bikes`, {
@@ -105,12 +97,12 @@ function App() {
       });
     };
 
-    fetch(); // 처음 앱이 실행되자 마자 fetch()라는 함수를 실행 시킨다.
+    fetch(); 
   }, []);
 
   useEffect(() => {
     if (selectedDropdownItem.value) {
-      // selectedDropdownItem이 'All'이 아닐때
+    
       const filteredWeather = data.weathers.reduce(
         (acc, cur, index) => {
           if (cur.weather === selectedDropdownItem.value) {
@@ -130,7 +122,6 @@ function App() {
         bikes: filteredWeather.bikes
       });
     } else {
-      // selectedDropdownItem이 'All' 일때
       setFilteredData({
         weathers: data.weathers,
         bikes: data.bikes
